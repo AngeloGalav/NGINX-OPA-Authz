@@ -1,0 +1,43 @@
+{
+    "users" : [
+        {
+            "name" : "sergei", 
+            "id" : "0",
+            "country" : "ru",
+            "role" : "/banned"
+        }, 
+        {
+            "name" : "jason", 
+            "id" : "1",
+            "country" : "us",
+            "role" : "/dev"
+        },
+        {
+            "name" : "fred", 
+            "id" : "2",
+            "country" : "it",
+            "role" : "/analyst"
+        },
+        {
+            "name" : "boss", 
+            "id" : "3",
+            "country" : "it",
+            "role" : "/admin"
+        }
+
+    ],
+    "roles" : {
+        "/dev" : [
+            "retrieve", 
+            "submit"
+        ],
+        "/analyst" : [ "retrieve" ],
+        "/admin" : [ 
+            "retrieve", 
+            "submit",
+            "report"
+        ],
+        "/moderator" : [ "report" ], 
+        "/banned" : []
+    }
+}

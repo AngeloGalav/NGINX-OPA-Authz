@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  revproxy:
+    image: nginx:1.21.6-alpine
+    volumes:
+      - ./nginx_docker_revproxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx_docker_revproxy/scripts/:/etc/nginx/njs/
+    ports:
+      - "8081:80"
+
+  opa:
+    image: openpolicyagent/opa:0.39.0-istio
+    volumes:
+      - ./opa/policy.rego:/etc/opa/policy.rego
+      - ./opa/data.json:/etc/opa/data.json
+      - ./opa/config.yaml:/etc/opa/config.yaml
+    command:
+      - run
+      - --server
+      - /etc/opa/policy.rego
+      - /etc/opa/data.json
+      - -c
+      - /etc/opa/config.yaml
+
+  opa_sidecar:
+    image: node:12.22.12-alpine3.15
+    volumes:
+      - ./opa_sidecar/:/etc/opa_proxy/
+    working_dir: /etc/opa_proxy/ 
+    entrypoint: ["/bin/sh","-c"]
+    command:
+      - |
+        npm install axios
+        node /etc/opa_proxy/server.js
+
+  service_server:
+    image: nginx:1.21.6-alpine
+    volumes:
+      - ./nginx_docker_webserver/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx_docker_webserver/src/:/usr/share/nginx/html/
+
+    # auth_request nginx

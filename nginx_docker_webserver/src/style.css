@@ -1,0 +1,18 @@
+.wrapper {
+    padding: 1em; 
+}
+
+.spaced {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.content {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.cool_textarea {
+    width: 60%;
+    font-family: monospace;
+}

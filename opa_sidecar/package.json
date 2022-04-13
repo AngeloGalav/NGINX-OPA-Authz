@@ -1,0 +1,15 @@
+{
+  "name": "opa_sidecar",
+  "version": "1.0.0",
+  "description": "Ti starai chiedendo: \"perché abbiamo bisogno di un altro proxy quando abbiamo già due server che fanno poco?\" La risposta è semplice e deriva da questo fattori: - OPA non riesce a fare da solo il parsing delle richieste HTTP. Questo vuol dire che non ha primitive per analizzare gli header, né il body o altro. In qualche modo, un proxy glielo deve parsare.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
