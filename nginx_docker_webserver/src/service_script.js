@@ -26,9 +26,10 @@ $(document).ready(function() {
             contentType: 'application/json',
             dataType : "json",
             headers: {
-               'Authorization': `Bearer ${BEARER_TOKEN}`,
+               'Authorization':  $('#jwt_enabled').is(":checked") ? `Bearer ${BEARER_TOKEN}` : "",
                'X-Role' : role_,
-               'X-EnableJWT' : $('#jwt_enabled').is(":checked")
+               'X-EnableJWT' : $('#jwt_enabled').is(":checked"),
+               "X-Operation" : operation_
             },
             data : JSON.stringify({
                 operation : operation_,
@@ -43,6 +44,9 @@ $(document).ready(function() {
         });
     });
 
+    // abilita il JWT. In questo modo, posso usare il JWT ufficale dell'INFN per poter
+    // loggarmi facilmente al nostro server. Unica cosa, ho solo un JWT, che ha ruolo /dev...
+    // Dunque, nel codice, se l'utente usa l'opzione JWT avrà solo permessi da dev
     $('#jwt_enabled').on('change', () => {
         if ($('#jwt_enabled').is(":checked")) {
             $('#user_role').attr('disabled', true);

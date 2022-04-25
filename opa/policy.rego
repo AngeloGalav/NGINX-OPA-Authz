@@ -2,7 +2,7 @@
 # Il nostro web server farebbe esattamente questo, ovvero invia a OPA i dati della 
 # richiesta, per controllora se passa oppure no.
 
-package my_rule
+package server_rules
 
 import input.http_method as http_method    # il metodo HTTP che la nostra regola deve analizzare.
                         # Rego non ha delle funzioni builtin per fare l'handling del HTTP requests (giustamente)
@@ -14,6 +14,8 @@ default allow = false # impedisce, se non trova la regola, di dare accesso
 # questo è il caso base
 allow {
     input.uses_jwt == "false"
+    # print 
+    # input.uses_jwt == false
     check_permission
 }
 
@@ -26,7 +28,7 @@ check_permission {
 
 # questo è il caso in cui abbiamo un jwt
 allow {
-    input.uses_jwt == "true"
+    input.uses_jwt == true
     allow_jwt
 }
 
