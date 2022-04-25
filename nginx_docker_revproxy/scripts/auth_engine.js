@@ -5,7 +5,7 @@ function authorize_operation(r) {
         "operation" : r.headersIn["X-Operation"],
         "role" : "/" + r.headersIn["X-Role"],
         "uses_jwt" : r.headersIn["X-EnableJWT"],
-        "token" : "no"
+        "token" : r.headersIn["Authorization"]
     }
 
     // pacchetto HTTP da inviare ad

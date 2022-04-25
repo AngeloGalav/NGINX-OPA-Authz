@@ -28,7 +28,7 @@ check_permission {
 
 # questo è il caso in cui abbiamo un jwt
 allow {
-    input.uses_jwt == true
+    input.uses_jwt == "true"
     allow_jwt
 }
 
