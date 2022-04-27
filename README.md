@@ -2,6 +2,8 @@
 Proof of concept for using OpenPolicyAgent as an Authorization server.
 This configuration uses NGINX as both the service server and reverse proxy, and uses NGINX's `auth_request` directive in order to pass the authorization request to OPA.
 
+Includes SSL support using dummy certs from CNAF.
+
 ## Architecture
 This scheme follows a simple user request using our system
 
@@ -38,7 +40,11 @@ You can use the following commands in order to start the Docker containers
 ```bash
 sudo docker-compose up
 ```
-You can access the frontend of this project (and test it) by connecting to `localhost:8081` with a web browser.
+You can access the frontend of this project (and test it) by connecting to `https://pippocnaf.test.example:8081/` with a web browser.
+
+## SSL Disclaimer
+Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 
+This is normal and caused by certificate which are, in fact, made only for testing purposes. 
 
 ## Some useful resources
 - [auth_request explanation](https://redbyte.eu/en/blog/using-the-nginx-auth-request-module/)
