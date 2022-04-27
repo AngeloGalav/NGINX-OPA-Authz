@@ -21,11 +21,11 @@ $(document).ready(function() {
 
         // infine invia la richiesta   
         $.ajax({
-            url: 'http://localhost:8081/operation/' + operation_,
+            url: 'https://pippocnaf.test.example:8081/operation/' + operation_,
             type: http_method,
             contentType: 'application/json',
             dataType : "json",
-            headers: {
+            headers: { // tocca mettere le informazioni necessarie nell'header
                'Authorization':  $('#jwt_enabled').is(":checked") ? `Bearer ${BEARER_TOKEN}` : "",
                'X-Role' : role_,
                'X-EnableJWT' : $('#jwt_enabled').is(":checked"),

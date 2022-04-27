@@ -7,8 +7,9 @@ services:
     volumes:
       - ./nginx_docker_revproxy/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx_docker_revproxy/scripts/:/etc/nginx/njs/
+      - ./nginx_docker_revproxy/certificates_for_https/:/etc/nginx/certs/
     ports:
-      - "8081:80"
+      - "8081:443"
 
   opa:
     image: openpolicyagent/opa:0.39.0-istio
