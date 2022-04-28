@@ -1,13 +1,16 @@
+# questa container fa uso di una immagine generica di nginx, 
+# senza usare quella di baltig dell'INFN.
+
 version: "3.9"
 
 services:
 
   revproxy:
-    image: baltig.infn.it:4567/storm2/ngx_http_voms_module/openresty-voms:openresty-with-njs-latest
+    image: nginx:1.21.6-alpine
     volumes:
-      - ./nginx_docker_revproxy/nginx.conf:/usr/local/openresty-voms/nginx/conf/nginx.conf
-      - ./nginx_docker_revproxy/scripts/:/usr/local/openresty-voms/nginx/njs/
-      - ./nginx_docker_revproxy/certificates_for_https/:/usr/local/openresty-voms/nginx/conf/certs/
+      - ./nginx_docker_revproxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx_docker_revproxy/scripts/:/etc/nginx/njs/
+      - ./nginx_docker_revproxy/certificates_for_https/:/etc/nginx/certs/
     ports:
       - "8081:443"
 
