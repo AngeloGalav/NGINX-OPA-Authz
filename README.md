@@ -4,6 +4,8 @@ This configuration uses NGINX as both the service server and reverse proxy, and 
 
 Includes SSL support using dummy certs from CNAF.
 
+You can find another implementation of the proposed PoC using a sidecar [here](https://github.com/AngeloGalav/NGINX-OPA-Authz/tree/sidecar_version).
+
 ## Architecture
 This scheme follows a simple user request using our system
 
@@ -44,7 +46,7 @@ You can access the frontend of this project (and test it) by connecting to `http
 
 ## SSL Disclaimer
 Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 
-This is normal and caused by certificate which are, in fact, made only for testing purposes. 
+This is normal and caused by the igi-ca certificates which are, in fact, made for testing purposes only. 
 
 ## Some useful resources
 - [auth_request explanation](https://redbyte.eu/en/blog/using-the-nginx-auth-request-module/)
