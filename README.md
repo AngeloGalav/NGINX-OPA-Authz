@@ -1,5 +1,5 @@
 # Using OPA as an auth server with NGINX
-Proof of concept for using OpenPolicyAgent as an Authorization server.
+Proof of concept for using OpenPolicyAgent as an _Authorization_ server.
 This configuration uses NGINX as both the service server and reverse proxy, and uses NGINX's `auth_request` directive in order to pass the authorization request to OPA.
 
 Includes SSL support using dummy certs from CNAF.
@@ -36,6 +36,15 @@ This scheme follows a simple user request using our system
                        |
                        |
 ```
+
+1. The user makes a request through the frontend/debug_requester. **BEWARE**: the user must already be authenticated.  
+2. NGINX reverse proxy processes the request, and sends it to OPA
+3. OPA makes a decision using its rules and data, and sends it to the Reverse Proxy
+4. NGINX then receives the data coming from OPA and processes it:
+        * If `allow != true`, then NGINX forbids the request to continue further, and sends code 403 to the requesting user.
+        * Else, if `allow == true`, NGINX forwards the request to the Service Server. 
+5. (and 6) If the Service Server returns a response, it goes through the Reverse Proxy and gets returned to the server. 
+
 
 ## How to use
 You can use the following commands in order to start the Docker containers
