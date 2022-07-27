@@ -58,6 +58,8 @@ sudo docker-compose up
 ```
 You can access the frontend of this project (and test it) by connecting to `https://servicecnaf.test.example:8081/` with a web browser.
 
+A bash tester is also available, but it's incomplete (_you can always make the curls to the reverse-proxy yourself though_). You can check it out in the `debug_requester` folder.
+
 ## SSL Disclaimer
 Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 
 This is normal and caused by the igi-ca certificates which are, in fact, made for testing purposes only. 
