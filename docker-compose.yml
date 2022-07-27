@@ -17,13 +17,7 @@ services:
       - ./opa/policy.rego:/etc/opa/policy.rego
       - ./opa/data.json:/etc/opa/data.json
       - ./opa/config.yaml:/etc/opa/config.yaml
-    command:
-      - run
-      - --server
-      - /etc/opa/policy.rego
-      - /etc/opa/data.json
-      - -c
-      - /etc/opa/config.yaml
+    command: [run, --server, /etc/opa/policy.rego, /etc/opa/data.json, -c, /etc/opa/config.yaml]
 
   service_server:
     image: nginx:1.21.6-alpine
