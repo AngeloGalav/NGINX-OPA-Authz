@@ -45,13 +45,18 @@ This scheme follows a simple user request using our system
 * Else, if `allow == true`, NGINX forwards the request to the Service Server. 
 5. (and 6) If the Service Server returns a response, it goes through the Reverse Proxy and gets returned to the server. 
 
-
 ## How to use
-You can use the following commands in order to start the Docker containers
+
+Before you start using this infrastructure, you'll need to add the `servicecnaf.test.example` host into `/etc/hosts` of your PC: 
+```
+127.0.0.1  localhost servicecnaf.test.example
+``` 
+
+Right after that, you can use the following commands in order to start the Docker containers
 ```bash
 sudo docker-compose up
 ```
-You can access the frontend of this project (and test it) by connecting to `https://pippocnaf.test.example:8081/` with a web browser.
+You can access the frontend of this project (and test it) by connecting to `https://servicecnaf.test.example:8081/` with a web browser.
 
 ## SSL Disclaimer
 Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 

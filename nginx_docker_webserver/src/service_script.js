@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         // infine invia la richiesta   
         $.ajax({
-            url: 'https://pippocnaf.test.example:8081/operation/' + operation_,
+            url: 'https://servicecnaf.test.example:8081/operation/' + operation_,
             type: http_method,
             contentType: 'application/json',
             dataType : "json",

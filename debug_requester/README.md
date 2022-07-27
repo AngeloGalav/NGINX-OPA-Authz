@@ -8,5 +8,5 @@ As of right now, you can only use the bash requester to test simple `operation` 
 
 JWT support for this debugger is on the way. 
 
-For easier testing, just use the frontend at `https://pippocnaf.test.example:8081/`.
+For easier testing, just use the frontend at `https://servicecnaf.test.example:8081/`.
 
