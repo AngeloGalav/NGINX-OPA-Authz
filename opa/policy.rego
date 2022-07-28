@@ -1,6 +1,6 @@
 # Questa versione del server supporta solo delle POST ad esso praticamente. 
-# Il nostro web server farebbe esattamente questo, ovvero invia a OPA i dati della 
-# richiesta, per controllora se passa oppure no.
+# E il nostro web server adempisce esattamente a questo, ovvero invia a OPA i dati della 
+# richiesta, per controllare se passa oppure no, attraverso una POST. 
 
 package server_rules
 
@@ -8,7 +8,7 @@ import input.http_method as http_method    # il metodo HTTP che la nostra regola
                         # Rego non ha delle funzioni builtin per fare l'handling del HTTP requests (giustamente)
                         # siccome questi in teoria li deve ricevere da un server esterno
 
-default allow = false # impedisce, se non trova la regola, di dare accesso
+default allow = false # Impedisce, se non trova la regola, di dare accesso (default deny)
 
 
 # questo è il caso base
@@ -24,7 +24,7 @@ check_permission {
     all == input.operation
 }
 
-# ----------------------------------------------
+# -------------------JWT Rules------------------------
 
 # questo è il caso in cui abbiamo un jwt
 allow {
@@ -55,6 +55,9 @@ role_validation {
 payload := p {
     [_, p,_] := io.jwt.decode(bearer_token) # decodifica il token
 }
+
+# Non controlla la validità in tempo del JWT purtroppo, 
+# siccome usiamo lo stesso JWT scaduto mille anni fa per testing
 
 # ""funzione"" per la validazione ed estrazione delle informazioni nel Bearer
 bearer_token := t {
