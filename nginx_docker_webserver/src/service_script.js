@@ -14,7 +14,7 @@ $(document).ready(function() {
         else if ($(elem.target).hasClass("write")) operation_ = "submit";
         else if ($(elem.target).hasClass("report")) operation_ = "report";
         else if ($(elem.target).hasClass("getres")) {
-            operation_ = "getres";
+            operation_ = "image_request";
             http_method = 'GET'
         }
         else operation_ = null;

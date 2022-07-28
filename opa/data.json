@@ -35,7 +35,8 @@
         "/admin" : [ 
             "retrieve", 
             "submit",
-            "report"
+            "report",
+            "image_request"
         ],
         "/moderator" : [ "report" ], 
         "/banned" : []
