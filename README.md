@@ -59,6 +59,17 @@ sudo docker-compose up
 You can access the frontend of this project (and test it) by connecting to `https://servicecnaf.test.example:8081/` with a web browser.
 
 A bash tester is also available, but it's incomplete (_you can always make the curls to the reverse-proxy yourself though_). You can check it out in the `debug_requester` folder.
+The `debug_requester` can be used by using this command: 
+```
+./debug_requester/requester_test.sh [role] [operation]
+```
+
+Here's an example of the `debug_requester` of a working debug requester: 
+```
+./debug_requester/requester_test.sh banned submit
+```
+
+As of right now, the available roles and operations used for testing can be found in the json file at the location `opa/data.json`.
 
 ## SSL Disclaimer
 Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 
