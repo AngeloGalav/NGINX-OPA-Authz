@@ -3,7 +3,7 @@
 As of right now, you can only use the bash requester to test simple `operation` and `role` combination.
 
 ```
-./requester_test.sh [operation] [role]
+./requester_test.sh [role] [operation]
 ```
 This debug requester also allows you to request a resource (in this case an image). 
 
