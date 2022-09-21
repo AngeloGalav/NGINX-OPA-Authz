@@ -14,8 +14,6 @@ default allow = false # Impedisce, se non trova la regola, di dare accesso (defa
 # questo è il caso base
 allow {
     input.uses_jwt == "false"
-    # print 
-    # input.uses_jwt == false
     check_permission
 }
 
@@ -30,11 +28,11 @@ check_permission {
 allow {
     input.uses_jwt == "true"
     allow_jwt
+    # token_is_valid
 }
 
 # allow è la regola base del nostra regola
 allow_jwt {
-    # input.uses_jwt == "true"
     user_check
 }
 
@@ -53,7 +51,10 @@ role_validation {
 
 # ""funzione"" per il recupero delle info nel JWT
 payload := p {
-    [_, p,_] := io.jwt.decode(bearer_token) # decodifica il token
+    [_, p, _] := io.jwt.decode(bearer_token) # decodifica il token
+    # decodifica il token e controlla che sia valido, dunque 
+    # che exp e nbf siano coerenti
+    # [token_is_valid, _, p] := io.jwt.decode_verify(bearer_token, time.now_ns())
 }
 
 # Non controlla la validità in tempo del JWT purtroppo, 

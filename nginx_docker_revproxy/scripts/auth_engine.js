@@ -20,14 +20,10 @@ function authorize_operation(r) {
         r.log(JSON.stringify(opa_res));
 
         var body = JSON.parse(opa_res.responseText);
+        
         // controlla la risposta di OPA (che è in JSON)
-        if (!body) {
+        if (!body || !body.allow) {
             r.return(403);
-            return;
-        }
-
-        if (!body.allow) {  // se il campo allow non c'è o è uguale a false, 
-            r.return(403);  // allora ritorna forbidden (403)
             return;
         }
 
