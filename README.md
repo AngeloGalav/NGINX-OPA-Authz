@@ -70,6 +70,7 @@ Here's an example of the `debug_requester` of a working debug requester:
 ```
 
 As of right now, the available roles and operations used for testing can be found in the json file at the location `opa/data.json`.
+The best way to test the JWT functionality is to use the provided frontend. 
 
 ## SSL Disclaimer
 Since the service uses dummy certificates made for testing, your browser may tell you that a certificate may be invalid/the CA cannot be trusted. 
