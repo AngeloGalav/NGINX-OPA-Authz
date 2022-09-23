@@ -57,9 +57,6 @@ payload := p {
     # [token_is_valid, _, p] := io.jwt.decode_verify(bearer_token, time.now_ns())
 }
 
-# Non controlla la validità in tempo del JWT purtroppo, 
-# siccome usiamo lo stesso JWT scaduto mille anni fa per testing
-
 # ""funzione"" per la validazione ed estrazione delle informazioni nel Bearer
 bearer_token := t {
     v := input.token
