@@ -33,33 +33,27 @@ allow {
 
 # allow è la regola base del nostra regola
 allow_jwt {
-    user_check
+    check_permission_jwt
+    check_time_valid
 }
 
-# operazioni per il controllo dell'utente
-user_check {
-    role_validation
-    check_permission
+# controlla se i ruoli dell'utente sono coerenti con l'operazione che vuole svolgere
+check_permission_jwt {
+    data.roles[payload["wlcg.groups"][_]][_]
+            == input.operation
 }
 
-# controlla se il ruolo è coerente.
-# questo check è utile solo ai fini della demo. Se avessimo un utente e un id utente, 
-# si farebbe il controllo con i dati del db.
-role_validation {
-    payload["wlcg.groups"][_] == input.role
-}
-
-# ""funzione"" per il recupero delle info nel JWT
-payload := p {
-    [_, p, _] := io.jwt.decode(bearer_token) # decodifica il token
-    # decodifica il token e controlla che sia valido, dunque 
-    # che exp e nbf siano coerenti
-    # [token_is_valid, _, p] := io.jwt.decode_verify(bearer_token, time.now_ns())
+check_time_valid {
+    payload.exp <= time.now_ns()
+} else { # caso in cui il token non scade mai 
+    payload.iss == payload.exp
+    payload.exp == payload.nbf
 }
 
 # ""funzione"" per la validazione ed estrazione delle informazioni nel Bearer
-bearer_token := t {
+payload := p {
     v := input.token
 	startswith(v, "Bearer ") # controllo che sia effettivamente il bearer_token
 	t := substring(v, count("Bearer "), -1) # prendo il token
+    [_, p, _] := io.jwt.decode(t)
 }
