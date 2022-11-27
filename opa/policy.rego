@@ -44,9 +44,9 @@ check_permission_jwt {
 }
 
 check_time_valid {
-    payload.exp <= time.now_ns()
+    payload.exp >= time.now_ns()
 } else { # caso in cui il token non scade mai 
-    payload.iss == payload.exp
+    payload.iat == payload.exp
     payload.exp == payload.nbf
 }
 
