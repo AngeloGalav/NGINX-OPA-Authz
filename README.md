@@ -2,7 +2,7 @@
 Proof of concept for using OpenPolicyAgent as an _Authorization_ server.
 This configuration uses NGINX as both the service server and reverse proxy, and uses NGINX's `auth_request` directive in order to pass the authorization request to OPA.
 
-Includes SSL support using dummy certs from CNAF.
+Includes SSL support using dummy certs from INFN CNAF.
 
 You can find another implementation of the proposed PoC using a sidecar [here](https://github.com/AngeloGalav/NGINX-OPA-Authz/tree/sidecar_version).
 
